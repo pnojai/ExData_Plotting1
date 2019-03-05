@@ -1,6 +1,6 @@
 # Exploratory Data Analysis.
 # Week 1 Project.
-# Plot 3.
+# Plot 4.
 # Jai Jeffryes
 
 # Create data directory.
@@ -93,22 +93,39 @@ power_consumption$DateTime <- strptime(paste(power_consumption$Date, power_consu
 
 # Ready to plot.
 # Set up and open output file.
-plotFile <- "plot3.png"
+plotFile <- "plot4.png"
 plotWidth <- 480
 plotHeight <- 480
 png(filename = plotFile, width = plotWidth, height = plotHeight)
 
 # Plot.
-with(power_consumption, plot(DateTime, Sub_metering_1,
-                             type = "n",
-                             xlab = "",
-                             ylab = "Energy sub metering"))
-with(power_consumption, points(DateTime, Sub_metering_1, type = "l", col = "black"))
-with(power_consumption, points(DateTime, Sub_metering_2, type = "l", col = "red"))
-with(power_consumption, points(DateTime, Sub_metering_3, type = "l", col = "blue"))
-legend("topright", lty = 1, col = c("black", "red", "blue"),
-       legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+par(mfrow = c(2, 2))
 
+with(power_consumption, {
+        plot(DateTime, Global_active_power,
+             type = "l",
+             xlab = "",
+             ylab = "Global Active Power")
+        plot(DateTime, Voltage,
+             type = "l",
+             xlab = "datetime",
+             ylab = "Voltage")
+        with(power_consumption, plot(DateTime, Sub_metering_1,
+                                     type = "n",
+                                     xlab = "",
+                                     ylab = "Energy sub metering"))
+        with(power_consumption, points(DateTime, Sub_metering_1, type = "l", col = "black"))
+        with(power_consumption, points(DateTime, Sub_metering_2, type = "l", col = "red"))
+        with(power_consumption, points(DateTime, Sub_metering_3, type = "l", col = "blue"))
+        legend("topright", lty = 1, col = c("black", "red", "blue"),
+               legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+        plot(DateTime, Global_reactive_power,
+             type = "l",
+             xlab = "datetime",
+             ylab = "Global_reactive_power")
+        
+        
+})
 
 # Close file.
 dev.off()

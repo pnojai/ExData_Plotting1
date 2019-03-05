@@ -1,6 +1,6 @@
 # Exploratory Data Analysis.
 # Week 1 Project.
-# Plot 1.
+# Plot 2.
 # Jai Jeffryes
 
 # Create data directory.
